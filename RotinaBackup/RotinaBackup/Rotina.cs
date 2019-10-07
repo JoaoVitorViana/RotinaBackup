@@ -11,10 +11,11 @@ namespace RotinaBackup
             try
             {
                 string pathy = ConfigurationManager.AppSettings["Local"];
-                string destino = ConfigurationManager.AppSettings["Destino"];
+                string file = ConfigurationManager.AppSettings["File"];
+                string destino = $"{ConfigurationManager.AppSettings["Destino"]}\\{DateTime.Now.ToString("ddMMyyyy")}";
                 if (!Directory.Exists(destino))
                     Directory.CreateDirectory(destino);
-                File.Copy(pathy, $"{destino}\\db{DateTime.Now.ToString("ddMMyyyy")}.mdf");
+                File.Copy($"{pathy}\\{file}", $"{destino}\\{file}");
             }
             catch (Exception ex)
             {
